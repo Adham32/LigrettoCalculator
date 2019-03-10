@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activites.FullscreenActivity"
+        android:background="@drawable/bg_color_blue_v2">
+
+
+    <TextView
+            android:text="@string/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_tv_af"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            android:textSize="64sp"
+            style="@style/White.Size64" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/balls_iv_af"/>
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp" app:srcCompat="@drawable/balls"
+            android:id="@+id/balls_iv_af"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@+id/auth_fragment_af"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv_af"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp" android:adjustViewBounds="true" android:cropToPadding="true"
+            android:layout_marginEnd="16dp" android:layout_marginStart="16dp" android:maxHeight="220dp"/>
+    <fragment
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:name="com.pl.adambartosik.ligrettocalculator.view.fragments.AuthMetodFragment"
+            android:id="@+id/auth_fragment_af" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout="@layout/fragment_just_play"
+            app:layout_constraintTop_toBottomOf="@+id/balls_iv_af" android:layout_marginTop="8dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

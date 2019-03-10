@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // define fonts
+
+    <style name="Boogaloo">
+        <item name="android:fontFamily">@font/boogaloo</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    // define colors
+
+    <style name="White" parent="Boogaloo">
+        <item name="android:textColor">@color/white_def</item>
+    </style>
+    <style name="BlueDark" parent="Boogaloo">
+        <item name="android:textColor">@color/blue_dark_def</item>
+    </style>
+    <style name="Blue" parent="Boogaloo">
+        <item name="android:textColor">@color/blue_active</item>
+    </style>
+    <style name="Grey" parent="Boogaloo">
+        <item name="android:textColor">@color/grey_label</item>
+    </style>
+
+
+    // sizes
+
+    <style name="White.Size64">
+        <item name="android:textSize">64sp</item>
+    </style>
+
+    <style name="BlueDark.Size24">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Blue.Size24">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Grey.Size12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+
+</resources>

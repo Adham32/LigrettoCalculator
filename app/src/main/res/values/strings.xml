@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">LigrettoCalculator</string>
+    <string name="title">Ligretto\n\t\t\t\t\t\tCalculator</string>
+
+    <string name="label_log_in">Log in using:</string>
+    <string name="label_welcome">Welcome!</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_new_game">New Game</string>
+    <string name="title_game">Game</string>
+    <string name="title_players">Players</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- labels -->
+    <string name="label_players_list">Players list</string>
+
+    <!-- hints -->
+    <string name="hint_name_of_the_game">Name of the game</string>
+
+    <!-- buttons -->
+    <string name="btn_create_new_game">Create New Game</string>
+    <string name="btn_create_new_player">Create New Player</string>
+    <string name="btn_lest_play">Let\'s play</string>
+
+    <!--tags-->
+    <string name="tag_activity_open_manager">AOM</string>
+    <string name="tag_fragment_game_menu">GMF</string>
+</resources>

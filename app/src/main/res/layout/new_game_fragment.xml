@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_name_of_the_game" android:layout_margin="8dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+            android:text="@string/label_players_list"
+            style="@style/Grey.Size12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView10" android:layout_marginTop="32dp"
+            android:layout_marginLeft="8dp" android:layout_marginRight="8dp"/>
+    <TextView
+            android:text="4/12"
+            style="@style/Blue.Size24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView11"
+            android:textAlignment="textEnd" android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"/>
+    <Button
+            style="@style/ButtonMainDarkBlue"
+            android:id="@+id/button_next_btn_gmd"
+            android:text="@string/btn_create_new_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="8dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"/>
+</LinearLayout>
