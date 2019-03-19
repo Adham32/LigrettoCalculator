@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
 
-    private var currentFragmentType: Int = 1
+    private var currentFragmentType: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class CreateActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initialButtonNext()
-        currentFragmentType = intent.getIntExtra("",1)
+        currentFragmentType = intent.getIntExtra("option",1)
         setFragment()
     }
 
@@ -29,7 +29,6 @@ class CreateActivity : AppCompatActivity() {
         when(currentFragmentType){
             1 ->  supportFragmentManager.beginTransaction().add(container_fl_ac.id, NewGameFragment.newInstance()).commit()
         }
-
     }
 
     private fun initialButtonNext() {
