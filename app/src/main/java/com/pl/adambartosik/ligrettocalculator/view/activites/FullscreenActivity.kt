@@ -1,5 +1,6 @@
 package com.pl.adambartosik.ligrettocalculator.view.activites
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -55,7 +56,7 @@ class FullscreenActivity : AppCompatActivity() {
 
     private fun hide() {
         mVisible = false
-        val bottomUp = AnimationUtils.loadAnimation(applicationContext, R.anim.abc_slide_out_bottom)
+        val bottomUp = AnimationUtils.loadAnimation(applicationContext, R.anim.abc_slide_in_bottom)
         bottomUp.setAnimationListener(object: Animation.AnimationListener{
             override fun onAnimationRepeat(animation: Animation?) {}
             override fun onAnimationStart(animation: Animation?) {}

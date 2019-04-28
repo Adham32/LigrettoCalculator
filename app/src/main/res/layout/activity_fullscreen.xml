@@ -22,7 +22,8 @@
             android:layout_marginStart="16dp"
             app:layout_constraintVertical_chainStyle="spread_inside"
             android:textSize="64sp"
-            style="@style/White.Size64" android:layout_marginBottom="16dp"
+            style="@style/White.Size64"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/balls_iv_af"/>
     <ImageView
             android:layout_width="0dp"
@@ -34,15 +35,24 @@
             app:layout_constraintBottom_toTopOf="@+id/auth_fragment_af"
             app:layout_constraintTop_toBottomOf="@+id/title_tv_af"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp" android:adjustViewBounds="true" android:cropToPadding="true"
-            android:layout_marginEnd="16dp" android:layout_marginStart="16dp" android:maxHeight="220dp"/>
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:maxHeight="220dp"/>
     <fragment
             android:layout_width="0dp"
-            android:layout_height="wrap_content" android:name="com.pl.adambartosik.ligrettocalculator.view.fragments.AuthMetodFragment"
-            android:id="@+id/auth_fragment_af" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:name="com.pl.adambartosik.ligrettocalculator.view.fragments.AuthMetodFragment"
+            android:id="@+id/auth_fragment_af"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout="@layout/fragment_just_play"
-            app:layout_constraintTop_toBottomOf="@+id/balls_iv_af" android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/balls_iv_af"
+            android:layout_marginTop="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
