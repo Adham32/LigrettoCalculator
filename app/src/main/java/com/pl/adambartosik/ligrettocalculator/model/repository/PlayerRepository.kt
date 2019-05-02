@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.pl.adambartosik.ligrettocalculator.model.LigrettoRoomDatabase
 import com.pl.adambartosik.ligrettocalculator.model.dao.PlayerDao
+import com.pl.adambartosik.ligrettocalculator.model.tables.Game
 import com.pl.adambartosik.ligrettocalculator.model.tables.Player
 
 class PlayerRepository {
@@ -20,8 +21,11 @@ class PlayerRepository {
     fun getPlayerEniity(id: Int): LiveData<Player>{
         return dao.getById(id)
     }
+    fun getAllPlayers(): LiveData<List<Player>>{
+        return dao.getAll()
+    }
 
-    fun instert(player: Player){
+    fun insert(player: Player){
         InsertAsyncTask(dao).execute(player)
     }
 

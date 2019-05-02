@@ -21,6 +21,9 @@ interface PlayerDao {
     @Query("SELECT * FROM Player WHERE id = :id")
     fun getById(id: Int): LiveData<Player>
 
+    @Query("SELECT * FROM Player")
+    fun getAll(): LiveData<List<Player>>
+
 
 
     // Delete

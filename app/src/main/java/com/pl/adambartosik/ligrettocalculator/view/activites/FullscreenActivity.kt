@@ -56,17 +56,17 @@ class FullscreenActivity : AppCompatActivity() {
 
     private fun hide() {
         mVisible = false
-        val bottomUp = AnimationUtils.loadAnimation(applicationContext, R.anim.abc_slide_in_bottom)
-        bottomUp.setAnimationListener(object: Animation.AnimationListener{
+        val bottomOut = AnimationUtils.loadAnimation(applicationContext, R.anim.abc_slide_out_bottom)
+        bottomOut.setAnimationListener(object: Animation.AnimationListener{
             override fun onAnimationRepeat(animation: Animation?) {}
             override fun onAnimationStart(animation: Animation?) {}
-
             override fun onAnimationEnd(animation: Animation?) {
+                auth_fragment_af.view!!.visibility = View.INVISIBLE
                 ActivityOpenManager.openMainActivity(this@FullscreenActivity)
             }
         })
-        auth_fragment_af.view!!.startAnimation(bottomUp)
-        auth_fragment_af.view!!.visibility = View.INVISIBLE
+
+        auth_fragment_af.view!!.startAnimation(bottomOut)
     }
 
     private fun show() {

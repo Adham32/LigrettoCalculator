@@ -25,4 +25,8 @@
     <!--tags-->
     <string name="tag_activity_open_manager">AOM</string>
     <string name="tag_fragment_game_menu">GMF</string>
+    <string name="title_new_player">New Player</string>
+    <string name="button_new_player">Create New Player</string>
+	<string name="button_cancel">Cancel</string>
+    <string name="button_save">Save</string>
 </resources>

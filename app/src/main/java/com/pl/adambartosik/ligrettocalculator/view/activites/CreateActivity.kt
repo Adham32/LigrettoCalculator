@@ -22,12 +22,31 @@ class CreateActivity : AppCompatActivity() {
 
         initialButtonNext()
         currentFragmentType = intent.getIntExtra("option",1)
+        setTitleName()
         setFragment()
+
+    }
+
+    private fun setTitleName(){
+        when(currentFragmentType){
+            1 -> {
+                setTitle(R.string.title_new_game)
+            }
+            2 -> {
+                setTitle(R.string.title_new_player)
+            }
+        }
     }
 
     private fun setFragment() {
         when(currentFragmentType){
-            1 ->  supportFragmentManager.beginTransaction().add(container_fl_ac.id, NewGameFragment.newInstance()).commit()
+            1 -> {
+                supportFragmentManager.beginTransaction().add(container_fl_ac.id, NewGameFragment.newInstance())
+                    .commit()
+            }
+            2 -> {
+
+            }
         }
     }
 
@@ -43,9 +62,11 @@ class CreateActivity : AppCompatActivity() {
             override fun onAnimationRepeat(animation: Animation?) { }
         })
 
+        /*
         button_next_btn_ac.setOnClickListener {
-            button_next_btn_ac.startAnimation(animation)
+        button_next_btn_ac.startAnimation(animation)
         }
+        */
     }
 
     private fun closeActivity(){
