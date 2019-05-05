@@ -22,21 +22,25 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
 
 
     fun insertNewGame(name: String): Boolean {
-        if(validationOfGameName(name)){
+        return if(validationOfGameName(name)){
             repository.insert(Game(0, getCreateStatus().id, name, System.currentTimeMillis(),0))
-            return true
+            true
         }else{
-            return false
+            false
         }
     }
 
+    // return created GameStatus from DB
     private fun getCreateStatus(): GameStatus {
-        return repositoryGS.getAll().value!!.first {
-            it.name == "Created"
-        }
+        return repositoryGS.get("Created")
     }
 
+    // checking name of game validation
     private fun validationOfGameName(name: String): Boolean {
-        return true
+        return name.isNotEmpty() && checkDuplicateNotExist(name)
+    }
+
+    private fun checkDuplicateNotExist(name: String): Boolean{
+        return repository.getAllGamesOnce().find { it.name == name } == null
     }
 }

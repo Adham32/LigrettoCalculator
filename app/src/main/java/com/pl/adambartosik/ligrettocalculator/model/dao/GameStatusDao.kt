@@ -21,6 +21,8 @@ interface GameStatusDao {
     @Query("SELECT * FROM GameStatus")
     fun getAll(): LiveData<List<GameStatus>>
 
+    @Query("SELECT * FROM GameStatus WHERE name = :name")
+    fun get(name: String): GameStatus
 
     // Delete
 

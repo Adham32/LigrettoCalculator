@@ -19,9 +19,9 @@ class AuthMetodFragment : Fragment() {
         // Inflate the layout for this fragment
 
         // WHEN AUTH BE CONNECTED:
-        // return inflater.inflate(R.layout.fragment_auth_metod, container, false)
+        // return inflater.inflate(R.layout.fragment_welcome_auth_metod, container, false)
         starterViewModel = ViewModelProviders.of(this).get(StarterViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_just_play, container, false)
+        return inflater.inflate(R.layout.fragment_welcome_just_play, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

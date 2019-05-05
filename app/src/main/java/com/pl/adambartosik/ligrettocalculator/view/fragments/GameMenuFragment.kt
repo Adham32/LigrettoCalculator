@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.view.activites.ActivityOpenManager
 import com.pl.adambartosik.ligrettocalculator.viewmodel.AdapterOfGames
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
-import kotlinx.android.synthetic.main.game_menu_dashboard.*
+import kotlinx.android.synthetic.main.fragment_menu_game_dashboard.*
 
 
 class GameMenuFragment: Fragment() {
@@ -28,7 +28,7 @@ class GameMenuFragment: Fragment() {
     private lateinit var gameViewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view =  inflater.inflate(R.layout.game_menu_dashboard, container, false)
+        var view =  inflater.inflate(R.layout.fragment_menu_game_dashboard, container, false)
         gameViewModel = ViewModelProviders.of(this.activity!!).get(GameViewModel::class.java)
         return view
     }
@@ -41,7 +41,7 @@ class GameMenuFragment: Fragment() {
 
     private fun initialRecyclerView() {
         var adapter = AdapterOfGames()
-        recyclerview_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerview_list.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
         recyclerview_list.adapter = adapter
 
         gameViewModel.gamesArray.observe(this, Observer { listOfGames ->
@@ -49,7 +49,7 @@ class GameMenuFragment: Fragment() {
                 adapter.setList(listOfGames)
                 if(listOfGames.isNotEmpty()){
                     // game list entry
-
+                    nsv_fmgd.smoothScrollTo(0,0)
                 }else{
                     // game list is empty
                     Log.d(getString(R.string.tag_fragment_game_menu), "Game list is empty.")
@@ -59,7 +59,6 @@ class GameMenuFragment: Fragment() {
                 Log.d(getString(R.string.tag_fragment_game_menu), "Game list is null.")
             }
         })
-
     }
 
     private fun initialButtonCreateNewGame(){

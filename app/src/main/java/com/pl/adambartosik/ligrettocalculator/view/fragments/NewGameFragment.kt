@@ -4,23 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
-import com.pl.adambartosik.ligrettocalculator.viewmodel.onDialogAnswerResultListener
-import kotlinx.android.synthetic.main.new_game_fragment.*
+import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
+import kotlinx.android.synthetic.main.fragment_game_create_new.*
 
 class NewGameFragment: Fragment(){
+
+    private lateinit var gameViewModel: GameViewModel
+    private var newGameName: String = ""
 
     companion object {
         fun newInstance() = NewGameFragment()
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view =  inflater.inflate(R.layout.new_game_fragment, container, false)
+        var view =  inflater.inflate(R.layout.fragment_game_create_new, container, false)
 
         return view
     }
@@ -30,20 +35,18 @@ class NewGameFragment: Fragment(){
         initText()
         initNumberOfPlayers()
         initInputName()
-        initButtonNewPlayer()
         initRV()
+        initButtonCreateGame()
+        gameViewModel = ViewModelProviders.of(this.activity!!).get(GameViewModel::class.java)
+        xx()
     }
 
     private fun initInputName(){
-        textInputLayout.hint = resources.getString(R.string.hint_name_of_the_game)
+        name_of_the_game_til_fgcn.hint = resources.getString(R.string.hint_name_of_the_game)
     }
 
     private fun initRV(){
         recyclerView_ngf.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL,false)
-    }
-
-    private fun initButtonNewPlayer(){
-        button_next_btn_ngf.text = resources.getString(R.string.button_new_player)
     }
 
     private fun initText(){
@@ -56,5 +59,35 @@ class NewGameFragment: Fragment(){
 
     private fun sizeOfMaxPlayers(): Int{
         return 12
+    }
+
+    private fun xx(){
+        gameViewModel.gamesArray.observe(this@NewGameFragment, Observer { it ->
+            it.forEach {
+                if(it.name == newGameName){
+                    // operation done
+                    this@NewGameFragment.activity!!.finish()
+                }
+            }
+        })
+    }
+
+    private fun initButtonCreateGame(){
+        val animation = AnimationUtils.loadAnimation(context, R.anim.click)
+        animation.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationEnd(animation: Animation?) {
+                newGameName = name_of_the_game_til_fgcn.editText!!.text.toString()
+                if(!gameViewModel.insertNewGame(name_of_the_game_til_fgcn.editText!!.text.toString())){
+                    // validation error
+                    name_of_the_game_til_fgcn.editText!!.error = "Error in name"
+                }
+            }
+            override fun onAnimationStart(animation: Animation?) { }
+            override fun onAnimationRepeat(animation: Animation?) { }
+        })
+
+        play_game_btn_ngf.setOnClickListener {
+            play_game_btn_ngf.startAnimation(animation)
+        }
     }
 }

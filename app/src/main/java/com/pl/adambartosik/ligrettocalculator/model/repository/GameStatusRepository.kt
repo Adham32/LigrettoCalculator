@@ -21,17 +21,26 @@ class GameStatusRepository {
         return dao.getAll()
     }
 
+    fun get(name: String): GameStatus {
+        return GetAsyncTask(dao, name).execute().get()
+    }
+
     fun insert(game: GameStatus){
         InsertAsyncTask(dao).execute(game)
     }
 
     class InsertAsyncTask(var dao: GameStatusDao) : AsyncTask<GameStatus, Void, Void>() {
-
         override fun doInBackground(vararg params: GameStatus): Void? {
             Log.d("GameStatusRepo", "insertAsyncTask")
             dao.insert(params[0])
             return null
         }
+    }
 
+    class GetAsyncTask(var dao: GameStatusDao, var name: String): AsyncTask<Void, Void, GameStatus>() {
+        override fun doInBackground(vararg params: Void?): GameStatus {
+            Log.d("GameStatusRepo", "getAsyncTask")
+            return dao.get(name)
+        }
     }
 }

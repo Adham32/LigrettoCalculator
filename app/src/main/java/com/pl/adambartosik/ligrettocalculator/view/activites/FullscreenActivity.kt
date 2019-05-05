@@ -8,7 +8,7 @@ import android.os.SystemClock
 import android.view.View
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import android.view.animation.AnimationUtils
-import kotlinx.android.synthetic.main.fragment_just_play.view.*
+import kotlinx.android.synthetic.main.fragment_welcome_just_play.view.*
 import android.view.animation.Animation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -34,7 +34,6 @@ class FullscreenActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         auth_fragment_af.view!!.visibility = View.INVISIBLE
         addListenerToAnimClickedNext()
-
     }
 
     private fun addListenerToAnimClickedNext(){
@@ -52,7 +51,6 @@ class FullscreenActivity : AppCompatActivity() {
         super.onPostCreate(savedInstanceState)
         delayedShow(1000)
     }
-
 
     private fun hide() {
         mVisible = false

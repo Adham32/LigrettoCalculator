@@ -19,6 +19,8 @@ interface GameDao {
     @Query("SELECT * FROM Game")
     fun getAll(): LiveData<List<Game>>
 
+    @Query("SELECT * FROM Game")
+    fun getAllOnce(): List<Game>
 
     // Delete
 

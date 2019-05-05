@@ -51,14 +51,7 @@ class EnterNameDialogFragment(): DialogFragment() {
                 addNewPlayer()
             }
         })
-        positive_btn_dfen.text = resources.getString(R.string.button_save)
-        positive_btn_dfen.setOnClickListener {
-            it.startAnimation(animationPos)
-        }
-        negative_btn_dfen.text = resources.getString(R.string.button_cancel)
-        negative_btn_dfen.setOnClickListener {
-            it.startAnimation(animationNeg)
-        }
+
     }
 
     private lateinit var mPlayerViewModel: PlayerViewModel

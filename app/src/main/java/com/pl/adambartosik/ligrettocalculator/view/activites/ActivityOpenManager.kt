@@ -20,7 +20,6 @@ abstract class ActivityOpenManager {
         fun openNewGameActivity(activity: Activity) {
             Log.i(activity.getString(R.string.tag_activity_open_manager), "Process open activity: CreateActivity")
             val intent = Intent(activity, CreateActivity::class.java)
-            intent.putExtra("option", 1)
             activity.startActivity(intent)
         }
     }

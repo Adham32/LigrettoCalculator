@@ -11,8 +11,6 @@ import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
 
-    private var currentFragmentType: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
@@ -21,42 +19,24 @@ class CreateActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         initialButtonNext()
-        currentFragmentType = intent.getIntExtra("option",1)
         setTitleName()
         setFragment()
 
     }
 
     private fun setTitleName(){
-        when(currentFragmentType){
-            1 -> {
-                setTitle(R.string.title_new_game)
-            }
-            2 -> {
-                setTitle(R.string.title_new_player)
-            }
-        }
+        setTitle(R.string.title_new_game)
     }
 
     private fun setFragment() {
-        when(currentFragmentType){
-            1 -> {
-                supportFragmentManager.beginTransaction().add(container_fl_ac.id, NewGameFragment.newInstance())
-                    .commit()
-            }
-            2 -> {
-
-            }
-        }
+        supportFragmentManager.beginTransaction().add(container_fl_ac.id, NewGameFragment.newInstance()).commit()
     }
 
     private fun initialButtonNext() {
         val animation = AnimationUtils.loadAnimation( this@CreateActivity.applicationContext, R.anim.click)
         animation.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationEnd(animation: Animation?) {
-                when(currentFragmentType){
-                    1 -> closeActivity()
-                }
+               closeActivity()
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }
