@@ -18,7 +18,17 @@ class PlayerViewModel (application: Application): AndroidViewModel(application) 
     }
 
 
-    fun insertNewPlayer(player: Player){
-        repository.insert(player)
+    fun insertNewPlayer(name: String): Boolean{
+        if(validationOfPlayerName(name)){
+            repository.insert(Player(0, name, System.currentTimeMillis()))
+            return true
+        }else{
+            // TODO show validation errors
+            return false
+        }
+    }
+
+    private fun validationOfPlayerName(name: String): Boolean{
+        return true
     }
 }

@@ -29,10 +29,10 @@ class EnterNameDialogFragment(): DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         title_tv_dfen.text = "Enter name"
         initButtons()
-
+        mPlayerViewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
     }
 
-    fun initButtons(){
+    private fun initButtons(){
         val animationPos = AnimationUtils.loadAnimation( this.context, R.anim.click)
         val animationNeg = AnimationUtils.loadAnimation( this.context, R.anim.click)
 
@@ -64,16 +64,10 @@ class EnterNameDialogFragment(): DialogFragment() {
     private lateinit var mPlayerViewModel: PlayerViewModel
 
     fun addNewPlayer(){
-        var name = input_name_of_game_tv_dfen.text.toString()
-        if(validationOfPlayerName(name)){
-            mPlayerViewModel = ViewModelProviders.of(this).get(PlayerViewModel::class.java)
-            mPlayerViewModel.insertNewPlayer(Player(0, name, System.currentTimeMillis()))
-        }else{
-            // TODO show validation errors
+        if(!mPlayerViewModel.insertNewPlayer(input_name_of_game_tv_dfen.text.toString())){
+            // show error
         }
     }
 
-    private fun validationOfPlayerName(name: String): Boolean{
-        return true
-    }
+
 }
