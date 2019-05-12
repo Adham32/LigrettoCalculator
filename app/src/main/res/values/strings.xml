@@ -12,10 +12,15 @@
     <string name="title_settings">Settings</string>
 
     <!-- labels -->
-    <string name="label_players_list">Players list</string>
+    <string name="label_players_list">Players list</string>'
+    <string name="label_best_score">Best score:</string>
+    <string name="label_with">with</string>
+    <string name="label_rounds">Rounds</string>
+    <string name="label_new_player">New player</string>
 
     <!-- hints -->
     <string name="hint_name_of_the_game">Name of the game</string>
+    <string name="hint_user_name">User name</string>
 
     <!-- buttons -->
     <string name="btn_create_new_game">Create New Game</string>
@@ -29,4 +34,10 @@
     <string name="button_new_player">Create New Player</string>
 	<string name="button_cancel">Cancel</string>
     <string name="button_save">Save</string>
+    <string name="button_create">Create</string>
+	<string name="option_delete">Delete</string>
+    <string name="option_edit">Edit</string>
+
+
+
 </resources>

@@ -29,6 +29,10 @@ class GameRepository {
         InsertAsyncTask(dao).execute(game)
     }
 
+    fun delete(game: Game) {
+        DeleteGameAsyncTask(dao).execute(game)
+    }
+
     class InsertAsyncTask(var dao: GameDao) : AsyncTask<Game, Void, Void>() {
         override fun doInBackground(vararg params: Game): Void? {
             Log.d("GameRepo", "insertAsyncTask")
@@ -41,6 +45,14 @@ class GameRepository {
         override fun doInBackground(vararg params: Void?): List<Game> {
             Log.d("GameRepo", "GetAllAsyncTask")
             return dao.getAllOnce()
+        }
+    }
+
+    class DeleteGameAsyncTask(var dao: GameDao) : AsyncTask<Game, Void, Void>() {
+        override fun doInBackground(vararg params: Game): Void?{
+            Log.d("GameRepo", "DeleteGameAsyncTask")
+            dao.delete(params[0])
+            return null
         }
     }
 }

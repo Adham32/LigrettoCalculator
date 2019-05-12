@@ -16,7 +16,7 @@ interface GameDao {
 
     // Read
 
-    @Query("SELECT * FROM Game")
+    @Query("SELECT * FROM Game ORDER BY updatedAtInMilis DESC")
     fun getAll(): LiveData<List<Game>>
 
     @Query("SELECT * FROM Game")

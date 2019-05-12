@@ -23,12 +23,18 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
 
     fun insertNewGame(name: String): Boolean {
         return if(validationOfGameName(name)){
-            repository.insert(Game(0, getCreateStatus().id, name, System.currentTimeMillis(),0))
+            // to good sort - update i the date as created
+            repository.insert(Game(0, getCreateStatus().id, name, System.currentTimeMillis(),System.currentTimeMillis()))
             true
         }else{
             false
         }
     }
+
+    fun deleteGame(game: Game){
+        repository.delete(game)
+    }
+
 
     // return created GameStatus from DB
     private fun getCreateStatus(): GameStatus {

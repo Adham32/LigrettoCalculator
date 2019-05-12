@@ -3,10 +3,14 @@ package com.pl.adambartosik.ligrettocalculator.viewmodel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.tables.Game
+import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.OptionsMenuDialogBottom
 import kotlinx.android.synthetic.main.item_game_dashboard.view.*
+import org.greenrobot.eventbus.EventBus
 
 class AdapterOfGames : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -42,6 +46,24 @@ class AdapterOfGames : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bindView(game: Game){
             itemView.title_of_game_tv_igd.text = game.name
             itemView.time_creation_tv_igd.text = game.createdAtInMilis.toString()
+
+            itemView.icon_menu_fl_gi.icon_menu_fl_gi.setOnClickListener {
+                val animation = AnimationUtils.loadAnimation(itemView.context, R.anim.click)
+                animation.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+
+                    override fun onAnimationEnd(animation: Animation) {
+                        EventBus.getDefault().post(
+                            EventMenuGameClicked(game)
+                        )
+                    }
+
+                    override fun onAnimationRepeat(animation: Animation) {}
+                })
+                itemView.icon_menu_fl_gi.startAnimation(animation)
+            }
         }
     }
+
+    class EventMenuGameClicked(val game: Game)
 }
