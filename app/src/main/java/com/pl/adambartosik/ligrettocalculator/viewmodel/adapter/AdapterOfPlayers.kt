@@ -72,7 +72,7 @@ class AdapterOfPlayers : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                     override fun onAnimationRepeat(animation: Animation) {}
                 })
-                itemView.icon_menu_fl_gi.startAnimation(animation)
+                it.startAnimation(animation)
             }
         }
     }

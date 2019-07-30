@@ -39,7 +39,7 @@ class PlayerRepository {
 
     class InsertAsyncTask(var dao: PlayerDao) : AsyncTask<Player, Void, Void>() {
         override fun doInBackground(vararg params: Player): Void? {
-            Log.d(LigrettoCalculator().context!!.resources.getString(R.string.log_player_repo), "Insert Player AsyncTask")
+            Log.d(LigrettoCalculator.getContext().resources.getString(R.string.log_player_repo), "Insert Player AsyncTask")
             dao.insert(params[0])
             return null
         }
@@ -47,7 +47,7 @@ class PlayerRepository {
 
     class DeletePlayerAsyncTask(var dao: PlayerDao) : AsyncTask<Player, Void, Void>() {
         override fun doInBackground(vararg params: Player): Void?{
-            Log.d(LigrettoCalculator().context!!.resources.getString(R.string.log_player_repo), "Delete Player AsyncTask")
+            Log.d(LigrettoCalculator.getContext().resources.getString(R.string.log_player_repo), "Delete Player AsyncTask")
             dao.delete(params[0])
             return null
         }

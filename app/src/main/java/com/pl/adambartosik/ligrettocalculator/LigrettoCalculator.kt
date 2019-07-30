@@ -5,11 +5,17 @@ import android.content.Context
 
 class LigrettoCalculator : Application() {
 
-    var context: Context? = null
 
-    override fun onCreate() {
-        super.onCreate()
-        context = applicationContext
+    init {
+        instance = this
+    }
+
+    companion object {
+        private var instance: LigrettoCalculator? = null
+
+        fun getContext() : Context {
+            return instance!!.applicationContext
+        }
     }
 
 
