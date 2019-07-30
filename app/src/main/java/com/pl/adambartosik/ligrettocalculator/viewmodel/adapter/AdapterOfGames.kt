@@ -1,4 +1,4 @@
-package com.pl.adambartosik.ligrettocalculator.viewmodel
+package com.pl.adambartosik.ligrettocalculator.viewmodel.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,6 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.tables.Game
-import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.OptionsMenuDialogBottom
 import kotlinx.android.synthetic.main.item_game_dashboard.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -32,7 +31,9 @@ class AdapterOfGames : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        view = GameItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_game_dashboard, parent, false))
+        view = GameItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_game_dashboard, parent, false)
+        )
         return view
     }
 
@@ -54,7 +55,9 @@ class AdapterOfGames : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                     override fun onAnimationEnd(animation: Animation) {
                         EventBus.getDefault().post(
-                            EventMenuGameClicked(game)
+                            EventMenuGameClicked(
+                                game
+                            )
                         )
                     }
 

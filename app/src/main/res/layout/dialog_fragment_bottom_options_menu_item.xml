@@ -8,7 +8,7 @@
                                                    android:padding="16dp">
 
 	<TextView
-			style="@style/Blue.Size20"
+			style="@style/BlueDark.Size20"
 			android:text="Edit"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"

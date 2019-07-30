@@ -17,6 +17,9 @@
     <string name="label_with">with</string>
     <string name="label_rounds">Rounds</string>
     <string name="label_new_player">New player</string>
+    <string name="label_wins">wins</string>
+    <string name="label_total_points">total points:</string>
+    <string name="label_games">games:</string>
 
     <!-- hints -->
     <string name="hint_name_of_the_game">Name of the game</string>
@@ -31,13 +34,24 @@
     <string name="tag_activity_open_manager">AOM</string>
     <string name="tag_fragment_game_menu">GMF</string>
     <string name="title_new_player">New Player</string>
+
+    <!--buttons-->
     <string name="button_new_player">Create New Player</string>
 	<string name="button_cancel">Cancel</string>
     <string name="button_save">Save</string>
     <string name="button_create">Create</string>
+
+    <!--options menu-->
 	<string name="option_delete">Delete</string>
     <string name="option_edit">Edit</string>
 
+    <!--errors-->
+    <string name="error_display_no_players">You have no players created.</string>
+    <string name="error_display_player_name_taken">This name is already taken!</string>
 
+
+    <!-- LOGS -->
+    <string name="log_player_repo">PlayerRepo</string>
+    <string name="log_game_repo">GameRepo</string>
 
 </resources>

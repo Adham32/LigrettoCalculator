@@ -1,8 +1,6 @@
-package com.pl.adambartosik.ligrettocalculator.view.dialogFragment
+package com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom
 
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +29,8 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         options_rv_dfbom.layoutManager = LinearLayoutManager(this@OptionsMenuDialogBottom.context, RecyclerView.VERTICAL, false)
-        options_rv_dfbom.adapter = AdapterBottomMenu()
+        options_rv_dfbom.adapter =
+            AdapterBottomMenu()
     }
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
@@ -52,7 +51,14 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            var view = OptionItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.dialog_fragment_bottom_options_menu_item, parent, false))
+            var view =
+                OptionItemViewHolder(
+                    LayoutInflater.from(parent.context).inflate(
+                        R.layout.dialog_fragment_bottom_options_menu_item,
+                        parent,
+                        false
+                    )
+                )
             return view
         }
 
@@ -77,7 +83,11 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
                         override fun onAnimationStart(animation: Animation) {}
 
                         override fun onAnimationEnd(animation: Animation) {
-                            EventBus.getDefault().post(EventOptionSelected(optionEntity))
+                            EventBus.getDefault().post(
+                                EventOptionSelected(
+                                    optionEntity
+                                )
+                            )
                         }
 
                         override fun onAnimationRepeat(animation: Animation) {}

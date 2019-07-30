@@ -38,19 +38,22 @@
         <item name="android:textSize">36sp</item>
     </style>
 
-    <style name="BlueDark.Size24">
-        <item name="android:textSize">24sp</item>
-    </style>
-
     <style name="Blue.Size24">
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="Blue.Size20">
+    <style name="BlueDark.Size24">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="BlueDark.Size20">
         <item name="android:textSize">20sp</item>
     </style>
-    <style name="Blue.Size14">
+    <style name="BlueDark.Size14">
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="BlueDark.Size16">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Grey.Size12">

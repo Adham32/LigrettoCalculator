@@ -27,7 +27,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/left"
-                app:layout_constraintEnd_toStartOf="@+id/right"
                 android:background="@drawable/color_blue_gradient_light">
 
             <LinearLayout
@@ -95,7 +94,7 @@
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
@@ -105,7 +104,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
 
                 <TextView
-                        style="@style/Blue.Size24"
+                        style="@style/BlueDark.Size24"
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,7 +147,7 @@
                             android:adjustViewBounds="true"/>
 
                     <TextView
-                            style="@style/Blue.Size14"
+                            style="@style/BlueDark.Size14"
                             android:text="8 players"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -174,7 +173,7 @@
                             android:singleLine="true"/>
 
                     <TextView
-                            style="@style/Blue.Size14"
+                            style="@style/BlueDark.Size14"
                             android:text="MASXKERMASXKERMASXKERMAS XKERMASXKER"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -194,7 +193,7 @@
                             android:singleLine="true"/>
 
                     <TextView
-                            style="@style/Blue.Size14"
+                            style="@style/BlueDark.Size14"
                             android:text="176 points"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

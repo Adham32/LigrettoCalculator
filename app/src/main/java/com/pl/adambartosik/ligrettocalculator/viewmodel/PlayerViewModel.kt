@@ -31,4 +31,12 @@ class PlayerViewModel (application: Application): AndroidViewModel(application) 
     private fun validationOfPlayerName(name: String): Boolean{
         return true
     }
+
+    fun getAllPlayers(): LiveData<List<Player>> {
+        return playersArray
+    }
+
+    fun deletePlayer(playerInteraction: Player) {
+        repository.delete(playerInteraction)
+    }
 }
