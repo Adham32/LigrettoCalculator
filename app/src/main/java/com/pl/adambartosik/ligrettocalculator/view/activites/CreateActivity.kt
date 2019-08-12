@@ -5,16 +5,26 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.DialogFragment
 import com.pl.adambartosik.ligrettocalculator.R
+import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.CreateUserDialogFragmentBottom
+import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.SelectPlayerDialogFragmentBottom
 import com.pl.adambartosik.ligrettocalculator.view.fragments.NewGameFragment
+import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersInCreateGame
+import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersToSelect
 import kotlinx.android.synthetic.main.activity_create.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class CreateActivity : AppCompatActivity() {
+
+    private lateinit var dialog: DialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
 
+        EventBus.getDefault().register(this@CreateActivity)
         // set icon arrow back
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -61,5 +71,26 @@ class CreateActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    @Subscribe
+    fun reciveEventOpenSelectPlayerDialog( event: AdapterOfPlayersInCreateGame.EventOpenSelectPlayerDialog){
+        // open dialog sheet bottom
+        dialog = SelectPlayerDialogFragmentBottom()
+        dialog.show(supportFragmentManager, "O")
+    }
+
+    @Subscribe
+    fun reciveEventSelectedPlayerClicked( event: AdapterOfPlayersToSelect.EventSelectedPlayerClicked){
+        /// close dialog, get player
+        var player = event.player
+
+        if(player == null){
+            dialog.dismiss()
+            this@CreateActivity.onBackPressed()
+        }else{
+            dialog.dismiss()
+        }
     }
 }

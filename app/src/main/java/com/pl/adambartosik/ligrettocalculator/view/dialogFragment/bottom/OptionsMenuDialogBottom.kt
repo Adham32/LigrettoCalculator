@@ -28,8 +28,8 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        options_rv_dfbom.layoutManager = LinearLayoutManager(this@OptionsMenuDialogBottom.context, RecyclerView.VERTICAL, false)
-        options_rv_dfbom.adapter =
+        options_rv_omdb.layoutManager = LinearLayoutManager(this@OptionsMenuDialogBottom.context, RecyclerView.VERTICAL, false)
+        options_rv_omdb.adapter =
             AdapterBottomMenu()
     }
 

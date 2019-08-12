@@ -17,9 +17,11 @@
     <string name="label_with">with</string>
     <string name="label_rounds">Rounds</string>
     <string name="label_new_player">New player</string>
+    <string name="label_create_new_player">Create new player</string>
     <string name="label_wins">wins</string>
     <string name="label_total_points">total points:</string>
     <string name="label_games">games:</string>
+    <string name="label_choose_player">Choose player</string>
 
     <!-- hints -->
     <string name="hint_name_of_the_game">Name of the game</string>
@@ -53,5 +55,7 @@
     <!-- LOGS -->
     <string name="log_player_repo">PlayerRepo</string>
     <string name="log_game_repo">GameRepo</string>
+	<string name="error_display_game_name_taken">This name of game already exists</string>
+	<string name="add_new_player">Add player</string>
 
 </resources>

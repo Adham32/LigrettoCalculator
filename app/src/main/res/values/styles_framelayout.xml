@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="IconFrame48">
+		<item name="android:layout_width">@dimen/icon_frame_48</item>
+		<item name="android:layout_height">@dimen/icon_frame_48</item>
+	</style>
+
+
+</resources>

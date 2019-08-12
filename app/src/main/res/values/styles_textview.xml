@@ -34,6 +34,9 @@
     <style name="White.Size24">
         <item name="android:textSize">24sp</item>
     </style>
+    <style name="White.Size20">
+        <item name="android:textSize">20sp</item>
+    </style>
     <style name="White.Size36">
         <item name="android:textSize">36sp</item>
     </style>
@@ -59,9 +62,13 @@
     <style name="Grey.Size12">
         <item name="android:textSize">12sp</item>
     </style>
-   <style name="Grey.Size14">
+    <style name="Grey.Size14">
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="Grey.Size20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
 
 

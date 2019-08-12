@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
+import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersInCreateGame
 import kotlinx.android.synthetic.main.fragment_game_create_new.*
 
 class NewGameFragment: Fragment(){
 
+    private lateinit var adapter: AdapterOfPlayersInCreateGame
     private lateinit var gameViewModel: GameViewModel
     private var newGameName: String = ""
 
@@ -46,7 +48,9 @@ class NewGameFragment: Fragment(){
     }
 
     private fun initRV(){
+        adapter = AdapterOfPlayersInCreateGame()
         recyclerView_ngf.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL,false)
+        recyclerView_ngf.adapter = adapter
     }
 
     private fun initText(){
@@ -60,6 +64,8 @@ class NewGameFragment: Fragment(){
     private fun sizeOfMaxPlayers(): Int{
         return 12
     }
+
+
 
     private fun xx(){
         gameViewModel.gamesArray.observe(this@NewGameFragment, Observer { it ->
@@ -79,7 +85,7 @@ class NewGameFragment: Fragment(){
                 newGameName = name_of_the_game_til_fgcn.editText!!.text.toString()
                 if(!gameViewModel.insertNewGame(name_of_the_game_til_fgcn.editText!!.text.toString())){
                     // validation error
-                    name_of_the_game_til_fgcn.editText!!.error = "Error in name"
+                    name_of_the_game_til_fgcn.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
                 }
             }
             override fun onAnimationStart(animation: Animation?) { }
