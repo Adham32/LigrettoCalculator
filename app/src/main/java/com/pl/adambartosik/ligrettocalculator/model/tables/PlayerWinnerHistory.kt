@@ -1,5 +1,6 @@
 package com.pl.adambartosik.ligrettocalculator.model.tables
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -17,6 +18,7 @@ import org.jetbrains.annotations.NotNull
 class PlayerWinnerHistory {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true)
     @NotNull
     private var id: Int
 

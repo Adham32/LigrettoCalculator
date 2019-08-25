@@ -13,4 +13,6 @@
     <color name="grey_disable">#B49B9B9B</color>
     <color name="grey_label">#7B858B</color>
     <color name="blue_active">#2F85BB</color>
+
+    <color name="card_yellow">#F9E83E</color>
 </resources>

@@ -18,7 +18,7 @@ interface PlayerDao {
 
     // Read
 
-    @Query("SELECT * FROM Player WHERE id = :id")
+    @Query("SELECT * FROM Player WHERE p_id = :id")
     fun getById(id: Int): LiveData<Player>
 
     @Query("SELECT * FROM Player")
@@ -31,7 +31,7 @@ interface PlayerDao {
     @Query("DELETE FROM Player")
     fun deleteAll()
 
-    @Query("DELETE FROM Player WHERE id = :id")
+    @Query("DELETE FROM Player WHERE p_id = :id")
     fun deleteByID(id: Int)
 
     @Delete

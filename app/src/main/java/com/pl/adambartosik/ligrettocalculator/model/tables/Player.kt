@@ -1,5 +1,6 @@
 package com.pl.adambartosik.ligrettocalculator.model.tables
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
@@ -8,13 +9,16 @@ import org.jetbrains.annotations.NotNull
 class Player {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "p_id", index = true)
     @NotNull
      var id: Int
 
     @NotNull
+    @ColumnInfo(name = "p_name", index = true)
      var name: String
 
     @NotNull
+    @ColumnInfo(name = "p_createdAtInMilis", index = true)
      var createdAtInMilis: Long
 
 

@@ -12,15 +12,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
+import com.pl.adambartosik.ligrettocalculator.viewmodel.GameToPlayerViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersInCreateGame
 import kotlinx.android.synthetic.main.fragment_game_create_new.*
 
-class NewGameFragment: Fragment(){
+class NewGameFragment() : Fragment(){
 
-    private lateinit var adapter: AdapterOfPlayersInCreateGame
+    private lateinit var gameToPlayerViewModel: GameToPlayerViewModel
     private lateinit var gameViewModel: GameViewModel
+    private lateinit var adapter: AdapterOfPlayersInCreateGame
     private var newGameName: String = ""
+    private lateinit var extraBundle: Bundle
 
     companion object {
         fun newInstance() = NewGameFragment()
@@ -35,12 +38,14 @@ class NewGameFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initText()
-        initNumberOfPlayers()
+        initNumberOfPlayers(0)
         initInputName()
         initRV()
         initButtonCreateGame()
         gameViewModel = ViewModelProviders.of(this.activity!!).get(GameViewModel::class.java)
+        gameToPlayerViewModel = ViewModelProviders.of(this.activity!!).get(GameToPlayerViewModel::class.java)
         xx()
+        observerToGTP()
     }
 
     private fun initInputName(){
@@ -57,15 +62,20 @@ class NewGameFragment: Fragment(){
         label_player_list_tv_nfg.text = resources.getString(R.string.label_players_list)
     }
 
-    private fun initNumberOfPlayers(){
-        number_of_player_tv_ngf.text = "0/${sizeOfMaxPlayers()}"
+    private fun initNumberOfPlayers(num: Int){
+        number_of_player_tv_ngf.text = "$num/${sizeOfMaxPlayers()}"
     }
 
     private fun sizeOfMaxPlayers(): Int{
         return 12
     }
 
-
+    private fun observerToGTP(){
+        gameToPlayerViewModel.getGameToPlayerByGameID(extraBundle.getLong("gameID").toInt()).observe(this, Observer {
+            adapter.setData(it)
+            initNumberOfPlayers(it.size)
+        })
+    }
 
     private fun xx(){
         gameViewModel.gamesArray.observe(this@NewGameFragment, Observer { it ->
@@ -95,5 +105,9 @@ class NewGameFragment: Fragment(){
         play_game_btn_ngf.setOnClickListener {
             play_game_btn_ngf.startAnimation(animation)
         }
+    }
+
+    fun setBundle(bundle: Bundle) {
+        this.extraBundle = bundle
     }
 }

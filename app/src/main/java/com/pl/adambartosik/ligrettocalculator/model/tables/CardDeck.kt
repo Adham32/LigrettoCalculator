@@ -1,5 +1,6 @@
 package com.pl.adambartosik.ligrettocalculator.model.tables
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
@@ -8,18 +9,18 @@ import org.jetbrains.annotations.NotNull
 class CardDeck {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "cd_id", index = true)
+    var id: Int = 0
+
+    @ColumnInfo(name = "cd_name", index = true)
     @NotNull
-    private var id: Int
+    var name: String
 
     @NotNull
-    private var name: String
-
-    @NotNull
-    private var resID: Int
+    var resID: Int
 
 
-    constructor(id: Int, name: String, resID: Int) {
-        this.id = id
+    constructor(name: String, resID: Int) {
         this.name = name
         this.resID = resID
     }

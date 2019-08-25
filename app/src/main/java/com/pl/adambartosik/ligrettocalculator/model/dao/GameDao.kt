@@ -11,7 +11,7 @@ interface GameDao {
     // Create
 
     @Insert
-    fun insert(game: Game)
+    fun insert(game: Game): Long
 
 
     // Read

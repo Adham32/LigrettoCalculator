@@ -1,5 +1,6 @@
 package com.pl.adambartosik.ligrettocalculator.model.tables
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -9,17 +10,17 @@ import org.jetbrains.annotations.NotNull
     foreignKeys = [
         ForeignKey(
             entity = Game::class,
-            parentColumns = ["id"],
+            parentColumns = ["g_id"],
             childColumns = ["gameID"]
         ),
         ForeignKey(
             entity = Player::class,
-            parentColumns = ["id"],
+            parentColumns = ["p_id"],
             childColumns = ["playerID"]
         ),
         ForeignKey(
             entity = CardDeck::class,
-            parentColumns = ["id"],
+            parentColumns = ["cd_id"],
             childColumns = ["cardDeckID"]
         )
     ]
@@ -27,20 +28,22 @@ import org.jetbrains.annotations.NotNull
 class GameToPlayer {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "gtp_id", index = true)
     @NotNull
-    private var id: Int
+    var id: Int
 
     @NotNull
-    private var gameID: Int
+    var gameID: Int
 
     @NotNull
-    private var playerID: Int
+    var playerID: Int
 
     @NotNull
-    private var cardDeckID: Int
+    var cardDeckID: Int
 
     @NotNull
-    private var createdAtInMilis: Long
+    @ColumnInfo(name = "gtp_createdAtInMilis", index = true)
+    var createdAtInMilis: Long
 
     constructor(id: Int, gameID: Int, playerID: Int, cardDeckID: Int, createdAtInMilis: Long) {
         this.id = id
@@ -49,4 +52,7 @@ class GameToPlayer {
         this.cardDeckID = cardDeckID
         this.createdAtInMilis = createdAtInMilis
     }
+
+
+
 }

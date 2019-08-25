@@ -8,4 +8,5 @@
     <dimen name="icon_frame_48">48dp</dimen>
     <dimen name="frame_64">64dp</dimen>
     <dimen name="icon_s">24dp</dimen>
+    <dimen name="icon_m">48dp</dimen>
 </resources>

@@ -55,7 +55,13 @@
     <!-- LOGS -->
     <string name="log_player_repo">PlayerRepo</string>
     <string name="log_game_repo">GameRepo</string>
+    <string name="log_card_deck_repo">CardDeckRepo</string>
+    <string name="log_game_to_player_repo">GameToPlayRepo</string>
 	<string name="error_display_game_name_taken">This name of game already exists</string>
 	<string name="add_new_player">Add player</string>
+
+    <!-- LOGS -->
+    <string name="cards_yellow">Yellow</string>
+
 
 </resources>

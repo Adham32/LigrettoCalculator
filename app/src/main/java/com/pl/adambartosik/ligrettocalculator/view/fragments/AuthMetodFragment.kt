@@ -37,6 +37,14 @@ class AuthMetodFragment : Fragment() {
                 }
             }
         })
+
+        starterViewModel.cardDeckArray.observe( this, Observer {
+            if(it != null){
+                if(it.isEmpty()){
+                    starterViewModel.generateCardDeck()
+                }
+            }
+        })
     }
 
 }

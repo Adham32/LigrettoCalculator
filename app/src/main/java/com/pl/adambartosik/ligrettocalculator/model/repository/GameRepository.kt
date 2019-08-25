@@ -27,19 +27,19 @@ class GameRepository {
         return GetAllAsyncTask(dao).execute().get()
     }
 
-    fun insert(game: Game){
-        InsertAsyncTask(dao).execute(game)
+    fun insert(game: Game): Long{
+        return InsertAsyncTask(dao).execute(game).get()
     }
 
     fun delete(game: Game) {
         DeleteGameAsyncTask(dao).execute(game)
     }
 
-    class InsertAsyncTask(var dao: GameDao) : AsyncTask<Game, Void, Void>() {
-        override fun doInBackground(vararg params: Game): Void? {
+    class InsertAsyncTask(var dao: GameDao) : AsyncTask<Game, Void, Long>() {
+        override fun doInBackground(vararg params: Game): Long {
             Log.d(LigrettoCalculator.getContext().resources.getString(R.string.log_game_repo), "Insert Game AsyncTask")
-            dao.insert(params[0])
-            return null
+            var id = dao.insert(params[0])
+            return id
         }
     }
 
