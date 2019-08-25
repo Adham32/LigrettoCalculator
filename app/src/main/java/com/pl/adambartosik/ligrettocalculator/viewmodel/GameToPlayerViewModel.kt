@@ -3,7 +3,7 @@ package com.pl.adambartosik.ligrettocalculator.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.pl.adambartosik.ligrettocalculator.model.entity.GameAllPlayers
+import com.pl.adambartosik.ligrettocalculator.model.entity.GameToPlayerEntity
 import com.pl.adambartosik.ligrettocalculator.model.repository.GameToPlayerRepository
 import com.pl.adambartosik.ligrettocalculator.model.tables.GameToPlayer
 
@@ -21,7 +21,7 @@ class GameToPlayerViewModel(application: Application): AndroidViewModel(applicat
     }
 
 
-    fun getGameToPlayerByGameID(gameId: Int): LiveData<List<GameAllPlayers>> {
+    fun getGameToPlayerByGameID(gameId: Int): LiveData<List<GameToPlayerEntity>> {
         return repository.getAll(gameId)
     }
 }

@@ -6,7 +6,7 @@ import com.pl.adambartosik.ligrettocalculator.model.tables.CardDeck
 import com.pl.adambartosik.ligrettocalculator.model.tables.Game
 import com.pl.adambartosik.ligrettocalculator.model.tables.Player
 
-class GameAllPlayers {
+class GameToPlayerEntity {
 
     @Embedded
     var game: Game? = null

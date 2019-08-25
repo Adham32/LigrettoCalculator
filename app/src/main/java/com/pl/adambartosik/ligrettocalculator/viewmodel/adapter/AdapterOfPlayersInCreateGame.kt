@@ -8,16 +8,15 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.LigrettoCalculator
 import com.pl.adambartosik.ligrettocalculator.R
-import com.pl.adambartosik.ligrettocalculator.model.entity.GameAllPlayers
+import com.pl.adambartosik.ligrettocalculator.model.entity.GameToPlayerEntity
 import com.pl.adambartosik.ligrettocalculator.model.tables.GameToPlayer
-import kotlinx.android.synthetic.main.fragment_game_create_new.*
-import kotlinx.android.synthetic.main.item_player_dashboard.view.*
+import kotlinx.android.synthetic.main.item_player_new_game.view.*
 import kotlinx.android.synthetic.main.item_player_new_game_add.view.*
 import org.greenrobot.eventbus.EventBus
 
 class AdapterOfPlayersInCreateGame : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
-    private var dataArray: List<GameAllPlayers>
+    private var dataArray: List<GameToPlayerEntity>
 
     init {
         dataArray = ArrayList()
@@ -34,7 +33,7 @@ class AdapterOfPlayersInCreateGame : RecyclerView.Adapter<RecyclerView.ViewHolde
                     )
                 else -> GameToPlayerViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_player_dashboard,
+                    R.layout.item_player_new_game,
                     parent,
                     false)
                 )
@@ -47,7 +46,7 @@ class AdapterOfPlayersInCreateGame : RecyclerView.Adapter<RecyclerView.ViewHolde
         return dataArray.size + 1
     }
 
-    fun setData(playersList: List<GameAllPlayers>) {
+    fun setData(playersList: List<GameToPlayerEntity>) {
         this.dataArray = playersList
         notifyDataSetChanged()
     }
@@ -72,8 +71,9 @@ class AdapterOfPlayersInCreateGame : RecyclerView.Adapter<RecyclerView.ViewHolde
 
     class GameToPlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
 
-        fun bindView(gameToPlayer: GameAllPlayers){
-            //itemView.player_name_tv_ipd.text = gameToPlayer.player?.name
+        fun bindView(gameToPlayer: GameToPlayerEntity){
+            itemView.player_name_tv_ipng.text = gameToPlayer.player!!.name
+            itemView.card_deck_icon_iv_ipng.setImageResource(gameToPlayer.cardDeck!!.resID)
         }
     }
 

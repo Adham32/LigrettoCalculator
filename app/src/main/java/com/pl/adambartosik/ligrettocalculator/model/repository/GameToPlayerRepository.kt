@@ -8,8 +8,7 @@ import com.pl.adambartosik.ligrettocalculator.LigrettoCalculator
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.LigrettoRoomDatabase
 import com.pl.adambartosik.ligrettocalculator.model.dao.GameToPlayerDao
-import com.pl.adambartosik.ligrettocalculator.model.entity.GameAllPlayers
-import com.pl.adambartosik.ligrettocalculator.model.tables.Game
+import com.pl.adambartosik.ligrettocalculator.model.entity.GameToPlayerEntity
 import com.pl.adambartosik.ligrettocalculator.model.tables.GameToPlayer
 
 
@@ -22,7 +21,7 @@ class GameToPlayerRepository {
         dao = database.getGameToPlayerDao()
     }
 
-    fun getAll(gameID: Int): LiveData<List<GameAllPlayers>> {
+    fun getAll(gameID: Int): LiveData<List<GameToPlayerEntity>> {
         return dao.get(gameID)
     }
 
