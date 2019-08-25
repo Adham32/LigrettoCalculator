@@ -21,7 +21,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
             android:text="@string/label_players_list"
-            style="@style/Grey.Size12"
+            style="@style/Grey.Size14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/label_player_list_tv_nfg"
@@ -57,19 +57,19 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerView_ngf"/>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="0dp"
-            android:layout_weight="1"
             android:id="@+id/recyclerView_ngf"
             android:layout_width="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            tools:itemCount="15"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/play_game_btn_ngf"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/number_of_player_tv_ngf"/>
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/play_game_btn_ngf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/number_of_player_tv_ngf"
+            tools:itemCount="15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

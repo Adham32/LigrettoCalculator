@@ -1,6 +1,9 @@
 package com.pl.adambartosik.ligrettocalculator.view.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +15,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
+import com.pl.adambartosik.ligrettocalculator.model.tables.Game
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameToPlayerViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersInCreateGame
 import kotlinx.android.synthetic.main.fragment_game_create_new.*
+import java.util.*
 
 class NewGameFragment() : Fragment(){
 
+    private lateinit var currentGame: Game
     private lateinit var gameToPlayerViewModel: GameToPlayerViewModel
     private lateinit var gameViewModel: GameViewModel
     private lateinit var adapter: AdapterOfPlayersInCreateGame
@@ -44,8 +50,9 @@ class NewGameFragment() : Fragment(){
         initButtonCreateGame()
         gameViewModel = ViewModelProviders.of(this.activity!!).get(GameViewModel::class.java)
         gameToPlayerViewModel = ViewModelProviders.of(this.activity!!).get(GameToPlayerViewModel::class.java)
-        xx()
+        observerToGame()
         observerToGTP()
+        autoSaveName()
     }
 
     private fun initInputName(){
@@ -77,14 +84,48 @@ class NewGameFragment() : Fragment(){
         })
     }
 
-    private fun xx(){
-        gameViewModel.gamesArray.observe(this@NewGameFragment, Observer { it ->
-            it.forEach {
-                if(it.name == newGameName){
-                    // operation done
-                    this@NewGameFragment.activity!!.finish()
+    private fun observerToGame(){
+        gameViewModel.getGameByID(extraBundle.getLong("gameID").toInt()).observe(this, Observer {
+            if(it != null){
+                currentGame = it
+                if(it.name != "-"){
+                    name_of_the_game_til_fgcn.editText!!.setText(it.name)
                 }
             }
+        })
+    }
+
+    private fun autoSaveName(){
+        name_of_the_game_til_fgcn.editText!!.addTextChangedListener(object: TextWatcher{
+            var timer: Timer? = null
+
+            override fun afterTextChanged(s: Editable?) {
+                    timer = Timer()
+                    timer!!.schedule(object: TimerTask() {
+                        override fun run() {
+                            if(gameViewModel.checkAvailableOfGameName(s.toString())) {
+                                currentGame.name = s.toString()
+                                gameViewModel.update(currentGame)
+                                name_of_the_game_til_fgcn.editText!!.error = null
+                            }else{
+                                this@NewGameFragment.activity!!.runOnUiThread {
+                                    // validation error
+                                    name_of_the_game_til_fgcn.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
+                                }
+                            }
+                        }
+                    }, 800)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int){
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(timer != null){
+                    timer!!.cancel()
+                }
+            }
+
         })
     }
 
@@ -92,11 +133,7 @@ class NewGameFragment() : Fragment(){
         val animation = AnimationUtils.loadAnimation(context, R.anim.click)
         animation.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationEnd(animation: Animation?) {
-                newGameName = name_of_the_game_til_fgcn.editText!!.text.toString()
-                if(!gameViewModel.insertNewGame(name_of_the_game_til_fgcn.editText!!.text.toString())){
-                    // validation error
-                    name_of_the_game_til_fgcn.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
-                }
+                 // TODO OPEN NEXT ACTIVITY - GAME
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.tables.Game
+import com.pl.adambartosik.ligrettocalculator.model.tables.GameStatus
 import com.pl.adambartosik.ligrettocalculator.view.activites.ActivityOpenManager
 import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.OptionsMenuDialogBottom
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfGames
@@ -30,6 +31,7 @@ class GameMenuFragment: Fragment() {
         fun newInstance() = GameMenuFragment()
     }
 
+    private var gameStatusList: List<GameStatus>? = null
     private lateinit var dialog: OptionsMenuDialogBottom
     private lateinit var gameViewModel: GameViewModel
 
@@ -45,6 +47,7 @@ class GameMenuFragment: Fragment() {
         initialButtonCreateNewGame()
         initialRecyclerView()
 
+
     }
 
     override fun onDestroy() {
@@ -57,7 +60,15 @@ class GameMenuFragment: Fragment() {
         players_list_rv_fmpd.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         players_list_rv_fmpd.adapter = adapter
 
-        gameViewModel.gamesArray.observe(this, Observer { listOfGames ->
+        gameViewModel.gameStatus.observe(this, Observer {
+            gameStatusList = it
+        })
+
+        gameViewModel.gamesEntityArray.observe(this, Observer {
+            adapter.setList(it)
+        })
+
+      /*  gameViewModel.gamesArray.observe(this, Observer { listOfGames ->
             if(listOfGames != null){
                 adapter.setList(listOfGames)
                 if(listOfGames.isNotEmpty()){
@@ -71,14 +82,14 @@ class GameMenuFragment: Fragment() {
                 // game list is null
                 Log.d(getString(R.string.tag_fragment_game_menu), "Game list is null.")
             }
-        })
+        })*/
     }
 
     private fun initialButtonCreateNewGame(){
         val animation = AnimationUtils.loadAnimation(context, R.anim.click)
         animation.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationEnd(animation: Animation?) {
-                ActivityOpenManager.openNewGameActivity(this@GameMenuFragment.activity!!)
+                ActivityOpenManager.openNewGameActivity(this@GameMenuFragment.activity!!, null)
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }
@@ -100,6 +111,29 @@ class GameMenuFragment: Fragment() {
     fun registerEventGameMenuClicked(event: AdapterOfGames.EventMenuGameClicked){
         showMenuOfGame()
         gameInteraction = event.game
+    }
+
+    @Subscribe
+    fun recieveEventEventGameClicked(event: AdapterOfGames.EventGameClicked){
+        var showError = true
+
+        if(gameStatusList != null){
+            var gameStatusCreated = gameStatusList!!.find { it.name.equals(resources.getString(R.string.game_status_created)) }
+            if(gameStatusCreated != null){
+                when (event.game.statusID ){
+                    gameStatusCreated.id -> {
+                        var bundle = Bundle()
+                        bundle.putInt("gameID", event.game.id)
+                        showError = false
+                        ActivityOpenManager.openNewGameActivity(this@GameMenuFragment.activity!!, bundle)
+                    }
+                }
+            }
+        }
+
+        if(showError){
+            Toast.makeText(context, "Sorry...", Toast.LENGTH_SHORT).show()
+        }
     }
 
     @Subscribe

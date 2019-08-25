@@ -6,20 +6,25 @@
                                                    android:layout_height="wrap_content">
 
 	<androidx.cardview.widget.CardView
+			android:id="@+id/main_cv_ipnga"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/frame_64"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintHorizontal_bias="0.5"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:cardCornerRadius="12dp"
-			app:cardPreventCornerOverlap="true"
-			android:clipToPadding="true"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="4dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginBottom="8dp"
 			android:alwaysDrawnWithCache="true"
 			android:animateLayoutChanges="true"
 			android:animationCache="true"
-			android:id="@+id/main_cv_ipnga">
+			android:clipToPadding="true"
+			app:cardCornerRadius="12dp"
+			app:cardElevation="4dp"
+			app:cardMaxElevation="4dp"
+			app:cardPreventCornerOverlap="true"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
 
 
 		<FrameLayout
@@ -29,38 +34,36 @@
 
 			<androidx.constraintlayout.widget.ConstraintLayout
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					>
+					android:layout_height="match_parent">
 
 				<FrameLayout
-						style="@style/IconFrame48"
-						app:layout_constraintStart_toStartOf="parent"
-						app:layout_constraintTop_toTopOf="parent"
-						app:layout_constraintBottom_toBottomOf="parent"
 						android:id="@+id/frameLayout"
-						android:layout_marginStart="16dp">
+						style="@style/IconFrame48"
+						android:layout_marginStart="16dp"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent">
 
 					<ImageView
 							style="@style/IconStandard.FitCenter.Center.AdjustViewBounds"
-							android:src="@drawable/icon_players"
-							/>
+							android:src="@drawable/icon_players" />
 				</FrameLayout>
 
 				<TextView
+						android:id="@+id/textView11"
 						style="@style/White.Size20"
-						android:text="@string/add_new_player"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						app:layout_constraintBottom_toBottomOf="parent"
-						android:layout_marginBottom="16dp"
-						android:id="@+id/textView11"
-						app:layout_constraintTop_toTopOf="parent"
+						android:layout_marginStart="16dp"
 						android:layout_marginTop="16dp"
-						app:layout_constraintStart_toEndOf="@+id/frameLayout"
-						app:layout_constraintEnd_toEndOf="parent"
 						android:layout_marginEnd="16dp"
+						android:layout_marginBottom="16dp"
+						android:text="@string/add_new_player"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintEnd_toEndOf="parent"
 						app:layout_constraintHorizontal_bias="0.0"
-						android:layout_marginStart="16dp"/>
+						app:layout_constraintStart_toEndOf="@+id/frameLayout"
+						app:layout_constraintTop_toTopOf="parent" />
 			</androidx.constraintlayout.widget.ConstraintLayout>
 		</FrameLayout>
 

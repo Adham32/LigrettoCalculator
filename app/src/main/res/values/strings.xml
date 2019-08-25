@@ -61,8 +61,12 @@
 	<string name="error_display_game_name_taken">This name of game already exists</string>
 	<string name="add_new_player">Add player</string>
 
-    <!-- LOGS -->
+    <!-- Values -->
+    <string name="game_status_created">Created</string>
+    <string name="game_status_inprogress">InProgress</string>
+    <string name="game_status_ended">Ended</string>
     <string name="cards_yellow">Yellow</string>
+    <string name="label_players">%d players</string>
 
 
 </resources>

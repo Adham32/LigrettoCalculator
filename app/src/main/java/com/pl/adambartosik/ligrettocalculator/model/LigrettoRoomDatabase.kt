@@ -6,11 +6,12 @@ import androidx.annotation.NonNull
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pl.adambartosik.ligrettocalculator.model.dao.*
 import com.pl.adambartosik.ligrettocalculator.model.tables.*
 
-@Database(entities = [Player::class,  GameStatus::class, Game::class, GameToPlayer::class, CardDeck::class], version = 3)
+@Database(entities = [Player::class,  GameStatus::class, Game::class, GameToPlayer::class, CardDeck::class, GameRound::class], version = 5)
 abstract class LigrettoRoomDatabase: RoomDatabase() {
 
     abstract fun getPlayerDao(): PlayerDao

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull
     foreignKeys = [
         ForeignKey(
             entity = Game::class,
-            parentColumns = ["id"],
+            parentColumns = ["g_id"],
             childColumns = ["gameID"]
         )
 ])
@@ -20,16 +20,16 @@ class GameRound {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
     @NotNull
-    private var id: Int
+    var id: Int
 
     @NotNull
-    private var roundName: Int
+    var roundName: Int
 
     @NotNull
-    private var gameID: Int
+    var gameID: Int
 
     @NotNull
-    private var createdAtInMilis: Long
+    var createdAtInMilis: Long
 
 
     constructor(id: Int, roundName: Int, gameID: Int, createdAtInMilis: Long) {

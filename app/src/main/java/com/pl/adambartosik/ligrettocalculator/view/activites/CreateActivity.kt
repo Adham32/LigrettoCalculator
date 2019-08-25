@@ -24,6 +24,7 @@ import org.greenrobot.eventbus.Subscribe
 
 class CreateActivity : AppCompatActivity() {
 
+    private var bundleGameID: Int = 0
     private lateinit var gameToPlayerViewModel: GameToPlayerViewModel
     private var gameId: Long = 0
     private var playerID: Int = 0
@@ -33,6 +34,9 @@ class CreateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
+        if(this.intent.extras!= null){
+            checkBundle(this.intent.extras.getBundle("gameBundle"))
+        }
 
         EventBus.getDefault().register(this@CreateActivity)
         // set icon arrow back
@@ -43,6 +47,11 @@ class CreateActivity : AppCompatActivity() {
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         createNewGame()
         gameToPlayerViewModel = ViewModelProviders.of(this).get(GameToPlayerViewModel::class.java)
+
+    }
+
+    private fun checkBundle(bundle: Bundle?) {
+        bundleGameID = bundle?.getInt("gameID")!!
     }
 
     private fun setTitleName(){
@@ -50,7 +59,14 @@ class CreateActivity : AppCompatActivity() {
     }
 
     private fun createNewGame(){
-        gameId = gameViewModel.insertNewGame()
+        if(bundleGameID == 0){
+            // no game id send
+            // create new one
+            gameId = gameViewModel.insertNewGame()
+        }else{
+            // open game existed in db
+            gameId = bundleGameID.toLong()
+        }
 
         var b = Bundle()
         b.putLong("gameID", gameId)

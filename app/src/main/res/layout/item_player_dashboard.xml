@@ -7,7 +7,7 @@
 		android:layout_height="wrap_content"
 		app:cardCornerRadius="12dp"
 		app:cardElevation="14dp"
-		android:id="@+id/asd"
+		android:id="@+id/game_entity_cv_igd"
 		app:contentPadding="0dp"
 		app:cardPreventCornerOverlap="true"
 		android:layout_marginLeft="16dp"
