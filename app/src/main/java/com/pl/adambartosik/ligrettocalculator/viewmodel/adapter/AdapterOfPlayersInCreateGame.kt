@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.LigrettoCalculator
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.entity.GameToPlayerEntity
-import com.pl.adambartosik.ligrettocalculator.model.tables.GameToPlayer
 import kotlinx.android.synthetic.main.item_player_new_game.view.*
 import kotlinx.android.synthetic.main.item_player_new_game_add.view.*
 import org.greenrobot.eventbus.EventBus

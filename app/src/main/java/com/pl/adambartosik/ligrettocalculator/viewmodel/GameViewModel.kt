@@ -32,8 +32,9 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
         return repository.insert(Game(0, getGameStatusByName(LigrettoCalculator.getContext().resources.getString(R.string.game_status_created)).id, "-", System.currentTimeMillis(),System.currentTimeMillis()))
     }
 
+    /*
     fun insertNewGame(name: String): Boolean {
-        return if(validationOfGameName(name)){
+        return if(validationOfGameName(name, gameID)){
             // to good sort - update i the date as created
             repository.insert(Game(0, getGameStatusByName(LigrettoCalculator.getContext().resources.getString(R.string.game_status_created)).id, name, System.currentTimeMillis(),System.currentTimeMillis()))
             true
@@ -41,6 +42,7 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
             false
         }
     }
+    */
 
     fun deleteGame(game: Game){
         repository.delete(game)
@@ -53,7 +55,7 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
 
 
     /**
-     * Retrun Asynchoricly Game Status Entity by name
+     * Return Asynchronous Game Status Entity by name
      * @param name String
      * @return GameStatus
      */
@@ -62,20 +64,28 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
     }
 
     // checking name of game validation
-    private fun validationOfGameName(name: String): Boolean {
-        return name.isNotEmpty() && checkDuplicateNotExist(name)
+    private fun validationOfGameName(name: String, gameID: Int): Boolean {
+        return name.isNotEmpty() && checkDuplicateNotExist(name, gameID)
     }
 
-    private fun checkDuplicateNotExist(name: String): Boolean{
-        return repository.getAllGamesOnce().find { it.name == name } == null
+    private fun checkDuplicateNotExist(name: String, gameID: Int): Boolean{
+        val games = repository.getAllGamesOnce().filter {
+            it.name == name
+        }
+
+        return if(games.isEmpty()){
+            true
+        }else{
+            games.first().id == gameID
+        }
     }
 
     fun getGameByID(gameID: Int): LiveData<Game?> {
         return repository.getGameByID(gameID)
     }
 
-    fun checkAvailableOfGameName(name: String): Boolean {
-        return validationOfGameName(name)
+    fun checkAvailableOfGameName(name: String, gameID: Int): Boolean {
+        return validationOfGameName(name, gameID)
     }
 
     fun update(game: Game) {

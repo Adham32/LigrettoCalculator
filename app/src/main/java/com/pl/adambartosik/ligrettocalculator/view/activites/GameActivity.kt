@@ -84,9 +84,9 @@ class GameActivity : AppCompatActivity() {
      * Receive and set data from Bundle
      * @param bundle Bundle?
      */
-    private fun checkBundle(bundle: Bundle?) {
-        bundleGameID = bundle?.getInt("gameID")!!
-        bundleGameName = bundle?.getString("gameName")!!
+    private fun checkBundle(bundle: Bundle) {
+        bundleGameID = bundle.getInt("gameID")
+        bundleGameName = bundle.getString("gameName")!!
     }
 
     /**

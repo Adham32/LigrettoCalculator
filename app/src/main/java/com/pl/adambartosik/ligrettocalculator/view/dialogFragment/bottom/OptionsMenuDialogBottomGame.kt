@@ -18,7 +18,7 @@ import org.greenrobot.eventbus.EventBus
 
 
 
-class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
+class OptionsMenuDialogBottomGame: BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view =  inflater.inflate(R.layout.dialog_fragment_bottom_options_menu, container, false)
@@ -27,7 +27,7 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        options_rv_omdb.layoutManager = LinearLayoutManager(this@OptionsMenuDialogBottom.context, RecyclerView.VERTICAL, false)
+        options_rv_omdb.layoutManager = LinearLayoutManager(this@OptionsMenuDialogBottomGame.context, RecyclerView.VERTICAL, false)
         options_rv_omdb.adapter =
             AdapterBottomMenu()
     }
@@ -83,7 +83,7 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
 
                         override fun onAnimationEnd(animation: Animation) {
                             EventBus.getDefault().post(
-                                EventOptionSelected(
+                                EventOptionSelectedGame(
                                     optionEntity
                                 )
                             )
@@ -96,7 +96,7 @@ class OptionsMenuDialogBottom: BottomSheetDialogFragment() {
             }
         }
 
-        class EventOptionSelected(var option: Option)
+        class EventOptionSelectedGame(var option: Option)
     }
 
 

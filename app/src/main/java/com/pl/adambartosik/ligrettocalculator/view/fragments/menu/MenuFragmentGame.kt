@@ -17,6 +17,7 @@ import com.pl.adambartosik.ligrettocalculator.model.tables.Game
 import com.pl.adambartosik.ligrettocalculator.model.tables.GameStatus
 import com.pl.adambartosik.ligrettocalculator.view.activites.ActivityOpenManager
 import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.OptionsMenuDialogBottom
+import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.OptionsMenuDialogBottomGame
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfGames
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.fragment_menu_game_dashboard.*
@@ -32,7 +33,7 @@ class MenuFragmentGame: Fragment() {
     }
 
     private var gameStatusList: List<GameStatus>? = null
-    private lateinit var dialog: OptionsMenuDialogBottom
+    private lateinit var dialog: OptionsMenuDialogBottomGame
     private lateinit var gameViewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -99,7 +100,7 @@ class MenuFragmentGame: Fragment() {
     }
 
     private fun showMenuOfGame(){
-        dialog = OptionsMenuDialogBottom()
+        dialog = OptionsMenuDialogBottomGame()
         dialog.show(this@MenuFragmentGame.fragmentManager, "O")
     }
 
@@ -172,16 +173,17 @@ class MenuFragmentGame: Fragment() {
      * @param event EventOptionSelected
      */
     @Subscribe
-    fun registerEventOptionSelected(event: OptionsMenuDialogBottom.AdapterBottomMenu.EventOptionSelected){
-        dialog.dismiss()
-        when(event.option){
-            OptionsMenuDialogBottom.AdapterBottomMenu.Option.EDIT -> {
-                openNewGameActivityForGameID(gameInteraction!!.id)
+    fun registerEventOptionSelected(event: OptionsMenuDialogBottomGame.AdapterBottomMenu.EventOptionSelectedGame){
+            dialog.dismiss()
+            when(event.option){
+                OptionsMenuDialogBottomGame.AdapterBottomMenu.Option.EDIT -> {
+                    openNewGameActivityForGameID(gameInteraction!!.id)
+                }
+                OptionsMenuDialogBottomGame.AdapterBottomMenu.Option.DELETE -> {
+                    Toast.makeText(context, "Option DELETE \n Coming soon.", Toast.LENGTH_SHORT).show()
+                    // gameViewModel.deleteGame(gameInteraction!!)
+                    // gameInteraction = null
+                }
             }
-            OptionsMenuDialogBottom.AdapterBottomMenu.Option.DELETE -> {
-                gameViewModel.deleteGame(gameInteraction!!)
-                gameInteraction = null
-            }
-        }
     }
 }

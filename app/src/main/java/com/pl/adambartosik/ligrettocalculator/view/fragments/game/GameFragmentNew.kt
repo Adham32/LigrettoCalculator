@@ -104,14 +104,21 @@ class GameFragmentNew() : Fragment(){
                     timer = Timer()
                     timer!!.schedule(object: TimerTask() {
                         override fun run() {
-                            if(gameViewModel.checkAvailableOfGameName(s.toString())) {
-                                currentGame.name = s.toString()
-                                gameViewModel.update(currentGame)
-                                name_of_the_game_til_fgcn.editText!!.error = null
-                            }else{
-                                this@GameFragmentNew.activity!!.runOnUiThread {
-                                    // validation error
-                                    name_of_the_game_til_fgcn.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
+                            if(s.toString() != currentGame.name){
+                                if(gameViewModel.checkAvailableOfGameName(s.toString(), currentGame.id)) {
+                                    currentGame.name = s.toString()
+                                    gameViewModel.update(currentGame)
+                                    if(name_of_the_game_til_fgcn?.editText!!.error != null){
+                                        this@GameFragmentNew.activity!!.runOnUiThread {
+                                            // clean error
+                                            name_of_the_game_til_fgcn?.editText!!.error = null
+                                        }
+                                    }
+                                }else{
+                                    this@GameFragmentNew.activity!!.runOnUiThread {
+                                        // validation error
+                                        name_of_the_game_til_fgcn?.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
+                                    }
                                 }
                             }
                         }
@@ -141,6 +148,7 @@ class GameFragmentNew() : Fragment(){
                 // 2. open next view
                 val bundle = Bundle()
                 bundle.putInt("gameID", currentGame.id)
+                bundle.putString("gameName", currentGame.name)
                 ActivityOpenManager.openGameActivity(this@GameFragmentNew.activity!!, bundle)
             }
             override fun onAnimationStart(animation: Animation?) { }

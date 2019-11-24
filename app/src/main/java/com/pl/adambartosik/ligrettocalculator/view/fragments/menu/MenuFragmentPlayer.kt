@@ -27,7 +27,6 @@ import org.greenrobot.eventbus.Subscribe
 
 class MenuFragmentPlayer: Fragment() {
 
-
     companion object {
         fun newInstance() =
             MenuFragmentPlayer()
@@ -136,12 +135,15 @@ class MenuFragmentPlayer: Fragment() {
         dialog.dismiss()
         when(event.option){
             OptionsMenuDialogBottom.AdapterBottomMenu.Option.EDIT -> {
-                Toast.makeText(context, "EDIT - "+ playerInteraction!!.name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Option EDIT - "+ playerInteraction!!.name + "\n Coming soon", Toast.LENGTH_SHORT).show()
             }
             OptionsMenuDialogBottom.AdapterBottomMenu.Option.DELETE -> {
-                mPlayerViewModel.deletePlayer(playerInteraction!!)
-                playerInteraction = null
+                Toast.makeText(context, "Option DELETE - "+ playerInteraction!!.name + "\n Coming soon", Toast.LENGTH_SHORT).show()
+                //TODO REPAIR FUNCTION DELETE (when player is in some games)
+                //mPlayerViewModel.deletePlayer(playerInteraction!!)
+                //playerInteraction = null
             }
         }
+
     }
 }

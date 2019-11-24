@@ -43,11 +43,12 @@
 					android:gravity="center">
 
 				<TextView
+						android:id="@+id/textView4"
 						style="@style/White.Size36"
-						android:text="1623"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:id="@+id/textView4"/>
+						android:text="0"
+						android:textAlignment="center" />
 
 				<TextView
 						android:text="@string/label_wins"
