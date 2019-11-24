@@ -1,4 +1,4 @@
-package com.pl.adambartosik.ligrettocalculator.view.fragments
+package com.pl.adambartosik.ligrettocalculator.view.fragments.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,18 +19,18 @@ import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.CreateU
 import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.OptionsMenuDialogBottom
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayers
 import com.pl.adambartosik.ligrettocalculator.viewmodel.PlayerViewModel
-import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfGames
 import kotlinx.android.synthetic.main.fragment_menu_game_dashboard.button_create_new_game_btn_gmd
 import kotlinx.android.synthetic.main.fragment_menu_game_dashboard.players_list_rv_fmpd
 import kotlinx.android.synthetic.main.fragment_menu_player_dashboard.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class PlayerMenuFragment: Fragment() {
+class MenuFragmentPlayer: Fragment() {
 
 
     companion object {
-        fun newInstance() = PlayerMenuFragment()
+        fun newInstance() =
+            MenuFragmentPlayer()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -65,7 +65,7 @@ class PlayerMenuFragment: Fragment() {
                // open dialog
                 dialog = CreateUserDialogFragmentBottom()
                 (dialog as CreateUserDialogFragmentBottom).setList(adapter.getDataList())
-                dialog.show(this@PlayerMenuFragment.fragmentManager, "O")
+                dialog.show(this@MenuFragmentPlayer.fragmentManager, "O")
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }
@@ -128,7 +128,7 @@ class PlayerMenuFragment: Fragment() {
 
     private fun showMenuOfPlayer() {
         dialog = OptionsMenuDialogBottom()
-        dialog.show(this@PlayerMenuFragment.fragmentManager, "O")
+        dialog.show(this@MenuFragmentPlayer.fragmentManager, "O")
     }
 
     @Subscribe

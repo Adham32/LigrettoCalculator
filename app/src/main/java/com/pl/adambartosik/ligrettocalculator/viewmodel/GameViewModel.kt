@@ -29,13 +29,13 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
 
 
     fun insertNewGame(): Long {
-        return repository.insert(Game(0, getCreateStatus().id, "-", System.currentTimeMillis(),System.currentTimeMillis()))
+        return repository.insert(Game(0, getGameStatusByName(LigrettoCalculator.getContext().resources.getString(R.string.game_status_created)).id, "-", System.currentTimeMillis(),System.currentTimeMillis()))
     }
 
     fun insertNewGame(name: String): Boolean {
         return if(validationOfGameName(name)){
             // to good sort - update i the date as created
-            repository.insert(Game(0, getCreateStatus().id, name, System.currentTimeMillis(),System.currentTimeMillis()))
+            repository.insert(Game(0, getGameStatusByName(LigrettoCalculator.getContext().resources.getString(R.string.game_status_created)).id, name, System.currentTimeMillis(),System.currentTimeMillis()))
             true
         }else{
             false
@@ -51,9 +51,14 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
         return repository.getPlayerListSizeByGameID(gameID)
     }
 
-    // return created GameStatus from DB
-    private fun getCreateStatus(): GameStatus {
-        return repositoryGS.get(LigrettoCalculator.getContext().resources.getString(R.string.game_status_created))
+
+    /**
+     * Retrun Asynchoricly Game Status Entity by name
+     * @param name String
+     * @return GameStatus
+     */
+    fun getGameStatusByName(name: String): GameStatus {
+        return repositoryGS.get(name)
     }
 
     // checking name of game validation

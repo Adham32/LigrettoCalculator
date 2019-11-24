@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">LigrettoCalculator</string>
+
+
     <string name="title">Ligretto\n\t\t\t\t\t\tCalculator</string>
-
-    <string name="label_log_in">Log in using:</string>
-    <string name="label_welcome">Welcome!</string>
-
     <string name="title_activity_main">MainActivity</string>
     <string name="title_new_game">New Game</string>
     <string name="title_game">Game</string>
     <string name="title_players">Players</string>
     <string name="title_settings">Settings</string>
+    <string name="title_new_player">New Player</string>
+    <string name="title_game_entity">Game name</string>
 
     <!-- labels -->
     <string name="label_players_list">Players list</string>'
@@ -23,6 +23,10 @@
     <string name="label_games">games:</string>
     <string name="label_choose_player">Choose player</string>
     <string name="label_cards_color">Cards color:</string>
+    <string name="label_players">%d players</string>
+    <string name="label_log_in">Log in using:</string>
+    <string name="label_welcome">Welcome!</string>
+    <string name="label_coming_soon">Coming soon.</string>
 
     <!-- hints -->
     <string name="hint_name_of_the_game">Name of the game</string>
@@ -32,11 +36,11 @@
     <string name="btn_create_new_game">Create New Game</string>
     <string name="btn_create_new_player">Create New Player</string>
     <string name="btn_lest_play">Let\'s play</string>
+    <string name="btn_add_new_player">Add player</string>
 
     <!--tags-->
     <string name="tag_activity_open_manager">AOM</string>
     <string name="tag_fragment_game_menu">GMF</string>
-    <string name="title_new_player">New Player</string>
 
     <!--buttons-->
     <string name="button_new_player">Create New Player</string>
@@ -51,22 +55,24 @@
     <!--errors-->
     <string name="error_display_no_players">You have no players created.</string>
     <string name="error_display_player_name_taken">This name is already taken!</string>
-
+    <string name="error_display_game_name_taken">This name of game already exists</string>
 
     <!-- LOGS -->
     <string name="log_player_repo">PlayerRepo</string>
     <string name="log_game_repo">GameRepo</string>
     <string name="log_card_deck_repo">CardDeckRepo</string>
+    <string name="log_game_to_player_to_game_round_repo">GameToPlayToGameRoundRepo</string>
+    <string name="log_game_round_repo">GameRoundRepo</string>
     <string name="log_game_to_player_repo">GameToPlayRepo</string>
-	<string name="error_display_game_name_taken">This name of game already exists</string>
-	<string name="add_new_player">Add player</string>
 
-    <!-- Values -->
+
+
+    <!-- Values DO NOT TRANSLATE!-->
     <string name="game_status_created">Created</string>
     <string name="game_status_inprogress">InProgress</string>
     <string name="game_status_ended">Ended</string>
     <string name="cards_yellow">Yellow</string>
-    <string name="label_players">%d players</string>
+    <string name="btn_add_round_score">Add Round Score</string>
 
 
 </resources>

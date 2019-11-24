@@ -8,11 +8,9 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
 import com.pl.adambartosik.ligrettocalculator.R
-import com.pl.adambartosik.ligrettocalculator.model.tables.GameToPlayer
-import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.CreateUserDialogFragmentBottom
 import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.SelectCardDeckDialogFragmentBottom
 import com.pl.adambartosik.ligrettocalculator.view.dialogFragment.bottom.SelectPlayerDialogFragmentBottom
-import com.pl.adambartosik.ligrettocalculator.view.fragments.NewGameFragment
+import com.pl.adambartosik.ligrettocalculator.view.fragments.game.GameFragmentNew
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameToPlayerViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfCardDeckToSelect
@@ -75,7 +73,7 @@ class CreateActivity : AppCompatActivity() {
     }
 
     private fun setFragment(bundle: Bundle?) {
-        var fragment = NewGameFragment.newInstance()
+        var fragment = GameFragmentNew.newInstance()
         if(bundle != null){
             fragment.setBundle(bundle)
         }

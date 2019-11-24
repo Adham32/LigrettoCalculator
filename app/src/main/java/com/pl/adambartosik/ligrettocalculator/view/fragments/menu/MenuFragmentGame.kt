@@ -1,7 +1,6 @@
-package com.pl.adambartosik.ligrettocalculator.view.fragments
+package com.pl.adambartosik.ligrettocalculator.view.fragments.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,10 +24,11 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 
-class GameMenuFragment: Fragment() {
+class MenuFragmentGame: Fragment() {
 
     companion object {
-        fun newInstance() = GameMenuFragment()
+        fun newInstance() =
+            MenuFragmentGame()
     }
 
     private var gameStatusList: List<GameStatus>? = null
@@ -38,7 +38,7 @@ class GameMenuFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         var view =  inflater.inflate(R.layout.fragment_menu_game_dashboard, container, false)
         gameViewModel = ViewModelProviders.of(this.activity!!).get(GameViewModel::class.java)
-        EventBus.getDefault().register(this@GameMenuFragment)
+        EventBus.getDefault().register(this@MenuFragmentGame)
         return view
     }
 
@@ -46,8 +46,6 @@ class GameMenuFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initialButtonCreateNewGame()
         initialRecyclerView()
-
-
     }
 
     override fun onDestroy() {
@@ -89,7 +87,7 @@ class GameMenuFragment: Fragment() {
         val animation = AnimationUtils.loadAnimation(context, R.anim.click)
         animation.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationEnd(animation: Animation?) {
-                ActivityOpenManager.openNewGameActivity(this@GameMenuFragment.activity!!, null)
+                ActivityOpenManager.openNewGameActivity(this@MenuFragmentGame.activity!!, null)
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }
@@ -102,7 +100,7 @@ class GameMenuFragment: Fragment() {
 
     private fun showMenuOfGame(){
         dialog = OptionsMenuDialogBottom()
-        dialog.show(this@GameMenuFragment.fragmentManager, "O")
+        dialog.show(this@MenuFragmentGame.fragmentManager, "O")
     }
 
     private var gameInteraction: Game? = null
@@ -113,22 +111,45 @@ class GameMenuFragment: Fragment() {
         gameInteraction = event.game
     }
 
+
+    /**
+     * Action after click on Game CardView in GameMenuFragment
+     * @param event EventGameClicked
+     */
     @Subscribe
     fun recieveEventEventGameClicked(event: AdapterOfGames.EventGameClicked){
         var showError = true
 
         if(gameStatusList != null){
-            var gameStatusCreated = gameStatusList!!.find { it.name.equals(resources.getString(R.string.game_status_created)) }
-            if(gameStatusCreated != null){
-                when (event.game.statusID ){
-                    gameStatusCreated.id -> {
-                        var bundle = Bundle()
-                        bundle.putInt("gameID", event.game.id)
-                        showError = false
-                        ActivityOpenManager.openNewGameActivity(this@GameMenuFragment.activity!!, bundle)
-                    }
+
+            // init gameStatus values
+
+            val gameStatusCreated = gameStatusList!!.find { it.name.equals(resources.getString(R.string.game_status_created)) }
+            val gameStatusInProgress = gameStatusList!!.find { it.name.equals(resources.getString(R.string.game_status_inprogress)) }
+            val gameStatusEndGame = gameStatusList!!.find { it.name.equals(resources.getString(R.string.game_status_ended)) }
+
+            // init action listener
+
+            when (event.game.statusID ){
+                gameStatusCreated?.id -> {
+                    openNewGameActivityForGameID(event.game.id)
+                    showError = false
+                }
+                gameStatusInProgress?.id -> {
+                    var bundle = Bundle()
+                    bundle.putInt("gameID", event.game.id)
+                    bundle.putString("gameName", event.game.name)
+                    showError = false
+                    ActivityOpenManager.openGameActivity(this@MenuFragmentGame.activity!!, bundle, false)
+                }
+                gameStatusEndGame?.id -> {
+                    //TODO - action - do nothing - game was end
+                }
+                else ->{
+                    showError = true
                 }
             }
+
         }
 
         if(showError){
@@ -136,12 +157,26 @@ class GameMenuFragment: Fragment() {
         }
     }
 
+    /**
+     * Open NewGameActivity for specific Game ID
+     * @param gameID Int
+     */
+    private fun openNewGameActivityForGameID(gameID: Int){
+        var bundle = Bundle()
+        bundle.putInt("gameID", gameID)
+        ActivityOpenManager.openNewGameActivity(this@MenuFragmentGame.activity!!, bundle)
+    }
+
+    /**
+     * Action for 3 dots menu - menu for Game Entity
+     * @param event EventOptionSelected
+     */
     @Subscribe
     fun registerEventOptionSelected(event: OptionsMenuDialogBottom.AdapterBottomMenu.EventOptionSelected){
         dialog.dismiss()
         when(event.option){
             OptionsMenuDialogBottom.AdapterBottomMenu.Option.EDIT -> {
-                Toast.makeText(context, "EDIT - "+ gameInteraction!!.name, Toast.LENGTH_SHORT).show()
+                openNewGameActivityForGameID(gameInteraction!!.id)
             }
             OptionsMenuDialogBottom.AdapterBottomMenu.Option.DELETE -> {
                 gameViewModel.deleteGame(gameInteraction!!)

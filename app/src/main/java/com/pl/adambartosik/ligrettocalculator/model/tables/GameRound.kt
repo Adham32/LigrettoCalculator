@@ -16,26 +16,25 @@ import org.jetbrains.annotations.NotNull
 ])
 class GameRound {
 
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
     @NotNull
     var id: Int
 
     @NotNull
-    var roundName: Int
+    var roundName: String
 
     @NotNull
     var gameID: Int
 
     @NotNull
-    var createdAtInMilis: Long
+    var createdAtInMillis: Long
 
 
-    constructor(id: Int, roundName: Int, gameID: Int, createdAtInMilis: Long) {
+    constructor(id: Int, roundName: String, gameID: Int, createdAtInMillis: Long) {
         this.id = id
         this.roundName = roundName
         this.gameID = gameID
-        this.createdAtInMilis = createdAtInMilis
+        this.createdAtInMillis = createdAtInMillis
     }
 }

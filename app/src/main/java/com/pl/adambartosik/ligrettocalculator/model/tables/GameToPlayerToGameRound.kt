@@ -6,11 +6,11 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
-@Entity(tableName = "GameToPlayerToGameToRound",
+@Entity(tableName = "GameToPlayerToGameRound",
     foreignKeys = [
         ForeignKey(
             entity = GameToPlayer::class,
-            parentColumns = ["id"],
+            parentColumns = ["gtp_id"],
             childColumns = ["gameToPlayerID"]
         ),
         ForeignKey(
@@ -21,30 +21,38 @@ import org.jetbrains.annotations.NotNull
     ]
 )
 
-class GameToPlayerToGameToRound {
+class GameToPlayerToGameRound {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
     @NotNull
-    private var id: Int
+    var id: Int
 
     @NotNull
-    private var gameToPlayerID: Int
+    var gameToPlayerID: Int
 
     @NotNull
-    private var gameRoundID: Int
+    var gameRoundID: Int
 
     @NotNull
-    private var score: Int
+    var score: Int
 
     @NotNull
-    private var createdAtInMilis: Long
+    var createdAtInMillis: Long
 
     constructor(id: Int, gameToPlayerID: Int, gameRoundID: Int, score: Int, createdAtInMilis: Long) {
         this.id = id
         this.gameToPlayerID = gameToPlayerID
         this.gameRoundID = gameRoundID
         this.score = score
-        this.createdAtInMilis = createdAtInMilis
+        this.createdAtInMillis = createdAtInMilis
+    }
+    constructor(
+    ){
+        this.id =0
+        this.gameToPlayerID = 0
+        this.gameRoundID = 0
+        this.score = 0
+        this.createdAtInMillis = 0L
     }
 }

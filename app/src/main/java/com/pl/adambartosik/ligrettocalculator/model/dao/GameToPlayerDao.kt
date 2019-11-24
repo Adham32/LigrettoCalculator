@@ -14,7 +14,7 @@ interface GameToPlayerDao {
     @Insert
     fun insert(gameToPlayer: GameToPlayer)
 
-    @Query("SELECT * FROM GameToPlayer INNER JOIN GAME ON Game.g_id = gameID INNER JOIN Player ON Player.p_id = playerID INNER JOIN CardDeck ON CardDeck.cd_id = cardDeckID WHERE gameID = :idOfGame")
+    @Query("SELECT * FROM GameToPlayer INNER JOIN GAME ON Game.g_id = gameID INNER JOIN Player ON Player.p_id = playerID INNER JOIN CardDeck ON CardDeck.cd_id = cardDeckID  WHERE gameID = :idOfGame")
     fun get(idOfGame : Int): LiveData<List<GameToPlayerEntity>>
 
 

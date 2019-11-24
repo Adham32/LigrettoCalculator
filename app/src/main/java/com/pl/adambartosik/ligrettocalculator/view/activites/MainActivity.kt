@@ -5,9 +5,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.pl.adambartosik.ligrettocalculator.R
-import com.pl.adambartosik.ligrettocalculator.view.fragments.GameMenuFragment
-import com.pl.adambartosik.ligrettocalculator.view.fragments.PlayerMenuFragment
-import com.pl.adambartosik.ligrettocalculator.view.fragments.SettingsMenuFragment
+import com.pl.adambartosik.ligrettocalculator.view.fragments.menu.MenuFragmentComingSoon
+import com.pl.adambartosik.ligrettocalculator.view.fragments.menu.MenuFragmentGame
+import com.pl.adambartosik.ligrettocalculator.view.fragments.menu.MenuFragmentPlayer
+import com.pl.adambartosik.ligrettocalculator.view.fragments.menu.MenuFragmentSettings
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,9 +53,9 @@ class MainActivity : AppCompatActivity() {
     // create fragments to activity
     private fun createFragments() {
         fragmentsList = ArrayList()
-        addToFragmentList(GameMenuFragment.newInstance())
-        addToFragmentList(PlayerMenuFragment.newInstance())
-        addToFragmentList(SettingsMenuFragment.newInstance())
+        addToFragmentList(MenuFragmentGame.newInstance())
+        addToFragmentList(MenuFragmentPlayer.newInstance())
+        addToFragmentList(MenuFragmentComingSoon.newInstance())
         activeFirstFragment()
     }
 

@@ -6,19 +6,20 @@ import androidx.annotation.NonNull
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pl.adambartosik.ligrettocalculator.model.dao.*
 import com.pl.adambartosik.ligrettocalculator.model.tables.*
 
-@Database(entities = [Player::class,  GameStatus::class, Game::class, GameToPlayer::class, CardDeck::class, GameRound::class], version = 5)
+@Database(entities = [Player::class,  GameStatus::class, Game::class, GameToPlayer::class, CardDeck::class, GameRound::class, GameToPlayerToGameRound::class], version = 8)
 abstract class LigrettoRoomDatabase: RoomDatabase() {
 
     abstract fun getPlayerDao(): PlayerDao
     abstract fun getGameStatusDao(): GameStatusDao
     abstract fun getGameDao(): GameDao
+    abstract fun getGameRoundDao(): GameRoundDao
     abstract fun getGameToPlayerDao(): GameToPlayerDao
     abstract fun getCardDeckDao(): CardDeckDao
+    abstract fun getGameToPlayerToGameRoundDao(): GameToPlayerToGameRoundDao
 
     companion object {
         @Volatile

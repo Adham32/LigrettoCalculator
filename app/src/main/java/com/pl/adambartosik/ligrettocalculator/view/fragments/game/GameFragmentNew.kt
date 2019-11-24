@@ -1,7 +1,6 @@
-package com.pl.adambartosik.ligrettocalculator.view.fragments
+package com.pl.adambartosik.ligrettocalculator.view.fragments.game
 
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -16,13 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pl.adambartosik.ligrettocalculator.R
 import com.pl.adambartosik.ligrettocalculator.model.tables.Game
+import com.pl.adambartosik.ligrettocalculator.view.activites.ActivityOpenManager
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameToPlayerViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.GameViewModel
 import com.pl.adambartosik.ligrettocalculator.viewmodel.adapter.AdapterOfPlayersInCreateGame
 import kotlinx.android.synthetic.main.fragment_game_create_new.*
 import java.util.*
 
-class NewGameFragment() : Fragment(){
+class GameFragmentNew() : Fragment(){
 
     private lateinit var currentGame: Game
     private lateinit var gameToPlayerViewModel: GameToPlayerViewModel
@@ -32,7 +32,8 @@ class NewGameFragment() : Fragment(){
     private lateinit var extraBundle: Bundle
 
     companion object {
-        fun newInstance() = NewGameFragment()
+        fun newInstance() =
+            GameFragmentNew()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -108,7 +109,7 @@ class NewGameFragment() : Fragment(){
                                 gameViewModel.update(currentGame)
                                 name_of_the_game_til_fgcn.editText!!.error = null
                             }else{
-                                this@NewGameFragment.activity!!.runOnUiThread {
+                                this@GameFragmentNew.activity!!.runOnUiThread {
                                     // validation error
                                     name_of_the_game_til_fgcn.editText!!.error = resources.getString(R.string.error_display_game_name_taken)
                                 }
@@ -133,7 +134,14 @@ class NewGameFragment() : Fragment(){
         val animation = AnimationUtils.loadAnimation(context, R.anim.click)
         animation.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationEnd(animation: Animation?) {
-                 // TODO OPEN NEXT ACTIVITY - GAME
+                // 1. update game status
+                currentGame.statusID = gameViewModel.getGameStatusByName(resources.getString(R.string.game_status_inprogress)).id
+                gameViewModel.update(currentGame)
+
+                // 2. open next view
+                val bundle = Bundle()
+                bundle.putInt("gameID", currentGame.id)
+                ActivityOpenManager.openGameActivity(this@GameFragmentNew.activity!!, bundle)
             }
             override fun onAnimationStart(animation: Animation?) { }
             override fun onAnimationRepeat(animation: Animation?) { }

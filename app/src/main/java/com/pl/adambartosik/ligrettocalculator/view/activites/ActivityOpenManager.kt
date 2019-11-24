@@ -26,6 +26,18 @@ abstract class ActivityOpenManager {
             }
             activity.startActivity(intent)
         }
+
+        fun openGameActivity(activity: Activity, bundle: Bundle?, finishParent: Boolean = true){
+            Log.i(activity.getString(R.string.tag_activity_open_manager), "Process open activity: GameActivity")
+            val intent = Intent(activity, GameActivity::class.java)
+            if(bundle != null){
+                intent.putExtra("gameBundle", bundle)
+            }
+            activity.startActivity(intent)
+            if(finishParent){
+                activity.finish()
+            }
+        }
     }
 
 
